@@ -25,6 +25,16 @@ func filter(nums []int, doFilter func(index, value int) bool) []int {
 	return result
 }
 
+func reject(nums []int, doReject func(index, value int) bool) []int {
+	result := make([]int, 0)
+	for index, value := range nums {
+		if !doReject(index, value) {
+			result = append(result, value)
+		}
+	}
+	return result
+}
+
 func main() {
 	//var number int = 100
 	//secondNumber := 0
@@ -108,5 +118,9 @@ func main() {
 
 	fmt.Println(filter([]int{1, 2, 3, 4, 6, 7, 8}, func(index, value int) bool {
 		return value%2 != 0
+	}))
+
+	fmt.Println(reject([]int{1, 2, 3, 4, 5, 6, 7}, func(index, value int) bool {
+		return value%2 == 0
 	}))
 }
