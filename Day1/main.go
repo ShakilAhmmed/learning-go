@@ -10,6 +10,18 @@ func add(firstNumber int, secondNumber int) (sum int) {
 	return sum
 }
 
+type UserInfo struct {
+	firstName string
+	lastName  string
+	email     string
+	addresses map[string]UserAddress
+}
+
+type UserAddress struct {
+	street      string
+	houseNumber int
+}
+
 func main() {
 	//var number int = 100
 	//secondNumber := 0
@@ -86,6 +98,24 @@ func main() {
 	//default:
 	//	fmt.Println("default case")
 	//}
+
+	firstUser := UserInfo{
+		firstName: "Shakil",
+		lastName:  "Ahmmed",
+		email:     "shakilfci461@gmail.com",
+		addresses: map[string]UserAddress{
+			"presentAddress": {
+				street:      "BefferStraat",
+				houseNumber: 34,
+			},
+			"permanentAddress": {
+				street:      "ABC",
+				houseNumber: 343,
+			},
+		},
+	}
+
+	fmt.Println(firstUser)
 
 	fmt.Println(collections.Map([]int{1, 2, 3, 4}, func(index, value int) int {
 		return value * 2
