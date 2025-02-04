@@ -1,5 +1,7 @@
 package collections
 
+//type callback func(index, value int) bool
+
 func Map(nums []int, callback func(index, value int) int) []int {
 	result := make([]int, 0)
 	for index, value := range nums {
