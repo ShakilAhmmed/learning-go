@@ -22,6 +22,16 @@ type UserAddress struct {
 	houseNumber int
 }
 
+func giftUser(userName string) func(int) {
+	price := 100
+
+	gift := func(amount int) {
+		price -= amount
+		fmt.Println(userName, " is getting ", amount, "gift")
+	}
+	return gift
+}
+
 func main() {
 	//var number int = 100
 	//secondNumber := 0
@@ -115,7 +125,28 @@ func main() {
 		},
 	}
 
+	secondUser := UserInfo{
+		firstName: "Tamim",
+		lastName:  "Ahmmed",
+		email:     "tamim.ahmmed@gmail.com",
+		addresses: map[string]UserAddress{
+			"presentAddress": {
+				street:      "HendricConciseStraat",
+				houseNumber: 52,
+			},
+			"permanentAddress": {
+				street:      "ABC",
+				houseNumber: 343,
+			},
+		},
+	}
+
 	fmt.Println(firstUser)
+	fmt.Println(secondUser)
+
+	giftCard := giftUser(firstUser.firstName)
+	giftCard(10)
+	giftCard(20)
 
 	fmt.Println(collections.Map([]int{1, 2, 3, 4}, func(index, value int) int {
 		return value * 2
