@@ -2,6 +2,7 @@ package main
 
 import (
 	"day-1/collections"
+	"day-1/models"
 	"fmt"
 )
 
@@ -159,4 +160,27 @@ func main() {
 	fmt.Println(collections.Reject([]int{1, 2, 3, 4, 5, 6, 7}, func(index, value int) bool {
 		return value%2 == 0
 	}))
+
+	userOne := User{
+		name:  "Shakil Ahmmed",
+		phone: "00000022121021",
+		email: "shakilf@gmail.com",
+		address: map[string]Address{
+			"presentAddress": {
+				street:      "BefferStraat",
+				houseNumber: 34,
+			},
+			"permanentAddress": {
+				street:      "Feni",
+				houseNumber: 1,
+			},
+		},
+	}
+
+	person := models.Person{
+		Name: "Tamim Ahmmed",
+	}
+
+	fmt.Println(userOne.name)
+	fmt.Println(person.Name)
 }

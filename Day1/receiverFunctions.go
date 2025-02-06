@@ -27,24 +27,25 @@ func (user *User) move(position, direction string) {
 	fmt.Println(user.name, "is moving from", position, "to", direction)
 }
 
-func main() {
-	userOne := User{
-		name:  "Shakil Ahmmed",
-		phone: "00000022121021",
-		email: "shakilf@gmail.com",
-		address: map[string]Address{
-			"presentAddress": {
-				street:      "BefferStraat",
-				houseNumber: 34,
-			},
-			"permanentAddress": {
-				street:      "Feni",
-				houseNumber: 1,
-			},
-		},
-	}
-
-	userOne.play()
-	userOne.move("A", "B")
-	fmt.Println(userOne)
-}
+//func main() {
+//	userOne := User{
+//		name:  "Shakil Ahmmed",
+//		phone: "00000022121021",
+//		email: "shakilf@gmail.com",
+//		address: map[string]Address{
+//			"presentAddress": {
+//				street:      "BefferStraat",
+//				houseNumber: 34,
+//			},
+//			"permanentAddress": {
+//				street:      "Feni",
+//				houseNumber: 1,
+//			},
+//		},
+//	}
+//
+//	userOne.play()
+//	userOne.move("A", "B")
+//	fmt.Println(userOne)
+//	fmt.Println(userOne.name)
+//}
