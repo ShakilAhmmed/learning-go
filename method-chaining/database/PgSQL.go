@@ -1,21 +1,24 @@
-package main
+package database
 
 import (
 	"fmt"
 )
 
-type MySQL struct {
+type pgSQL struct {
 	rawQuery string
 	table    string
 }
 
-func (database *MySQL) Query(table string) DatabaseContract {
+func (database *pgSQL) SetTable(table string) {
 	database.table = table
+}
+
+func (database *pgSQL) Query() DatabaseContract {
 	database.rawQuery = ""
 	return database
 }
 
-func (database *MySQL) Where(column, value string) DatabaseContract {
+func (database *pgSQL) Where(column, value string) DatabaseContract {
 	if database.table == "" {
 		panic("Table Name is Empty")
 	}
@@ -23,6 +26,10 @@ func (database *MySQL) Where(column, value string) DatabaseContract {
 	return database
 }
 
-func (database *MySQL) Get() {
+func (database *pgSQL) Get() {
 	fmt.Println(database.rawQuery)
+}
+
+func PgSQL() *pgSQL {
+	return new(pgSQL)
 }

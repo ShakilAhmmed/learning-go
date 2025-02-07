@@ -1,22 +1,17 @@
 package main
 
+import (
+	"method-chaining/database"
+	"method-chaining/models"
+)
+
 func main() {
 
-	Database := &MySQL{}
+	Database := database.MySQL()
 
-	person := Person{
-		Name:             "Shakil Ahmmed",
-		Email:            "shakilfci461@gmail.com",
-		DatabaseContract: Database,
-	}
+	person := models.Person("Shakil Ahmmed", "shakil@gmail.com", Database)
+	user := models.User("Shakil Ahmmed", "shakil@gmail.com", "shakil@gmail.com", Database)
 
-	user := User{
-		Name:             "Shakil Ahmmed",
-		Email:            "shakilfci461@gmail.com",
-		Password:         "shakilfci461@gmail.com",
-		DatabaseContract: Database,
-	}
-
-	person.Query("persons").Where("name", "shakil").Get()
-	user.Query("users").Where("email", "shakil@gmail.com").Get()
+	person.Query().Where("name", "shakil").Get()
+	user.Query().Where("email", "shakil@gmail.com").Get()
 }

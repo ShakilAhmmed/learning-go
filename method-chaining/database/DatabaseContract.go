@@ -1,7 +1,8 @@
-package main
+package database
 
 type DatabaseContract interface {
-	Query(table string) DatabaseContract
+	SetTable(table string)
+	Query() DatabaseContract
 	Where(column, value string) DatabaseContract
 	Get()
 }
