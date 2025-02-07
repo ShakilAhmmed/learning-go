@@ -1,10 +1,8 @@
 package main
 
-var Database DatabaseContract
-
 func main() {
 
-	Database = &MySQL{}
+	Database := &MySQL{}
 
 	person := Person{
 		Name:             "Shakil Ahmmed",
