@@ -14,6 +14,7 @@ func (database *mySQL) SetTable(table string) {
 }
 
 func (database *mySQL) Query() DatabaseContract {
+	fmt.Println("Using MySQL")
 	database.rawQuery = ""
 	return database
 }

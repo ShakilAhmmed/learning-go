@@ -14,6 +14,7 @@ func (database *pgSQL) SetTable(table string) {
 }
 
 func (database *pgSQL) Query() DatabaseContract {
+	fmt.Println("Using PgSQL")
 	database.rawQuery = ""
 	return database
 }
