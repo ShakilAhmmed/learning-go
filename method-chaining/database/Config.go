@@ -17,7 +17,3 @@ func InitDatabase(dbType string) {
 		panic("Unsupported Driver")
 	}
 }
-
-func init() {
-	InitDatabase(MYSQL)
-}
