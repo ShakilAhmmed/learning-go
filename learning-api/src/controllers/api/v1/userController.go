@@ -1,9 +1,10 @@
 package v1
 
 import (
-	"github.com/ShakilAhmmed/learning-go/llearning-api/src/contracts"
 	"github.com/ShakilAhmmed/learning-go/llearning-api/src/controllers"
+	"github.com/ShakilAhmmed/learning-go/llearning-api/src/helpers"
 	"github.com/ShakilAhmmed/learning-go/llearning-api/src/models"
+	"github.com/ShakilAhmmed/learning-go/llearning-api/src/requests"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
@@ -38,31 +39,20 @@ func (userController *UserController) Index(context echo.Context) error {
 		},
 	}
 
-	response := userController.Response(http.StatusOK, "Users fetched successfully", users)
-
-	return context.JSON(http.StatusOK, response)
+	return helpers.JsonResponse(context, http.StatusOK, "Users fetched successfully", users)
 }
 
 func (userController *UserController) Store(context echo.Context) error {
 
-	var user models.User
-
-	// Bind JSON request body to the user struct
-	if err := context.Bind(&user); err != nil {
-		return context.JSON(http.StatusBadRequest, contracts.ApiResponse{
-			Status:  http.StatusBadRequest,
-			Message: "Invalid request format",
-			Data:    nil,
-		})
+	var userRequest requests.UserRequest
+	// Bind JSON request body to the user request
+	if err := context.Bind(&userRequest); err != nil {
+		return helpers.JsonResponse(context, http.StatusBadRequest, "Invalid request format", nil)
 	}
 
-	if validationErrors := user.Validate(); validationErrors != nil {
-		return context.JSON(http.StatusBadRequest, contracts.ApiErrorResponse{
-			Status:  http.StatusBadRequest,
-			Message: "Validation failed",
-			Errors:  validationErrors, // Returns validation errors
-		})
+	if validationErrors := userRequest.Validate(); validationErrors != nil {
+		return helpers.JsonErrorResponse(context, http.StatusBadRequest, "Validation failed", validationErrors)
 	}
 
-	return context.JSON(http.StatusOK, user)
+	return helpers.JsonResponse(context, http.StatusOK, "User created successfully", nil)
 }
