@@ -44,9 +44,11 @@ func (userController *UserController) Index(context echo.Context) error {
 
 func (userController *UserController) Store(context echo.Context) error {
 
-	var userRequest requests.UserRequest
+	//var userRequest requests.UserRequest
+
+	userRequest := new(requests.UserRequest)
 	// Bind JSON request body to the user request
-	if err := context.Bind(&userRequest); err != nil {
+	if err := context.Bind(userRequest); err != nil {
 		return helpers.JsonResponse(context, http.StatusBadRequest, "Invalid request format", nil)
 	}
 
