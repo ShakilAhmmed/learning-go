@@ -12,7 +12,7 @@ func InitDatabase(dbType string) {
 	case MYSQL:
 		Driver = MySQL()
 	case PGSQL:
-		Driver = MySQL()
+		Driver = PgSQL()
 	default:
 		panic("Unsupported Driver")
 	}
